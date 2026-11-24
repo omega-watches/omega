@@ -1,0 +1,512 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <title>OMEGA · Часовой бутик</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #030304;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* HEADER */
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 60px;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .logo-omega {
+            font-size: 28px;
+            font-family: 'Cinzel', serif;
+            line-height: 1;
+        }
+
+        .logo-text {
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            letter-spacing: 4px;
+            margin-top: 2px;
+        }
+
+        nav {
+            display: flex;
+            gap: 40px;
+        }
+
+        nav a {
+            color: #b0b0b0;
+            text-decoration: none;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: 0.3s;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        nav a.active, nav a:hover {
+            color: #fff;
+        }
+
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #c59b27, transparent);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: 0.3s;
+        }
+
+        .icon-btn:hover {
+            opacity: 1;
+        }
+
+        .divider {
+            width: 1px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            padding: 0 8%;
+            background: #030304 url('https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&w=1920&q=80') center center / cover no-repeat;
+            overflow: hidden;
+        }
+
+        /* РўС‘РјРЅР°СЏ РІСѓР°Р»СЊ РїРѕРІРµСЂС… С„РѕРЅР° РґР»СЏ РіР»СѓР±РѕРєРёС… РіСЂР°РґРёРµРЅС‚РѕРІ */
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 75% 40%, transparent 20%, #030304 75%),
+                        linear-gradient(to right, #030304 35%, transparent 65%),
+                        linear-gradient(to top, #030304 10%, transparent 30%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 500px;
+        }
+
+        .sub-tag {
+            font-size: 11px;
+            letter-spacing: 6px;
+            color: #a0a0a0;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        .brand-title-wrap {
+            text-align: center;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .brand-symbol {
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            color: #dfba73;
+            text-shadow: 0 0 20px rgba(223, 186, 115, 0.3);
+            line-height: 1;
+        }
+
+        .brand-name {
+            font-family: 'Cinzel', serif;
+            font-size: 56px;
+            letter-spacing: 12px;
+            font-weight: 500;
+            background: linear-gradient(180deg, #ffffff 0%, #b5b5b5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 5px 0 10px 0;
+        }
+
+        .brand-subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            letter-spacing: 7px;
+            color: #d1d1d1;
+        }
+
+        .gold-glow-line {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #c59b27, transparent);
+            margin: 30px 0;
+            box-shadow: 0 0 10px #c59b27;
+        }
+
+        .hero-description {
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: #999;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+
+        .btn-gold-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            padding: 16px 32px;
+            border: 1px solid #c59b27;
+            background: rgba(3, 3, 4, 0.6);
+            color: #ffffff;
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            box-shadow: inset 0 0 15px rgba(197, 155, 39, 0.1);
+        }
+
+        .btn-gold-outline:hover {
+            background: #c59b27;
+            color: #000;
+            box-shadow: 0 0 25px rgba(197, 155, 39, 0.5);
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            width: 30px;
+            height: 45px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .scroll-down::after {
+            content: 'в†“';
+            font-size: 14px;
+            color: #fff;
+        }
+
+        /* FEATURES RIBBON */
+        .features-bar {
+            position: relative;
+            z-index: 10;
+            background: #050507;
+            border-top: 1px solid rgba(197, 155, 39, 0.2);
+            border-bottom: 1px solid rgba(197, 155, 39, 0.2);
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            padding: 40px 0;
+        }
+
+        .feature-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .feature-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 10%;
+            height: 80%;
+            width: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-icon {
+            width: 32px;
+            height: 32px;
+            margin-bottom: 15px;
+            stroke: #dfba73;
+        }
+
+        .feature-title {
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            letter-spacing: 2px;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+
+        .feature-desc {
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: #777;
+            text-transform: uppercase;
+        }
+
+        /* SECTION: MOVEMENT */
+        .movement-section {
+            position: relative;
+            min-height: 650px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 80px 8%;
+            background: #030304 url('watch-photo.webp') left center / contain no-repeat;
+        }
+
+        .movement-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, transparent 0%, #030304 60%);
+        }
+
+        .movement-content {
+            position: relative;
+            z-index: 2;
+            max-width: 500px;
+        }
+
+        .movement-accent-line {
+            width: 40px;
+            height: 2px;
+            background: #c59b27;
+            margin-bottom: 25px;
+        }
+
+        .movement-title {
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            line-height: 1.2;
+            letter-spacing: 5px;
+            color: #fff;
+            margin-bottom: 25px;
+        }
+
+        .movement-text {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #888;
+            margin-bottom: 35px;
+            font-weight: 300;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            background: #020202;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        footer .logo-omega {
+            font-size: 24px;
+            color: #c59b27;
+        }
+
+        footer .logo-text {
+            font-size: 12px;
+            color: #fff;
+        }
+
+        /* WATCH CATALOG */
+        .rolex-collection { padding: 100px 8%; background: #050507; border-top: 1px solid rgba(197, 155, 39, 0.2); }
+        .rolex-heading { text-align: center; margin-bottom: 42px; }
+        .rolex-heading .movement-accent-line { margin: 0 auto 25px; }
+        .rolex-heading .movement-text { margin: 0 auto; max-width: 620px; }
+        .catalog-filters { display: flex; justify-content: center; gap: 12px; margin: 0 auto 42px; flex-wrap: wrap; }
+        .catalog-filter { padding: 12px 22px; border: 1px solid rgba(197,155,39,.4); background: transparent; color: #aaa; font: 10px 'Montserrat',sans-serif; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: .3s; }
+        .catalog-filter:hover, .catalog-filter.active { color: #050507; background: #c59b27; border-color: #c59b27; }
+        .rolex-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 24px; max-width: 1200px; margin: 0 auto; }
+        .rolex-card { overflow: hidden; border: 1px solid rgba(197,155,39,.22); background: #080809; transition: transform .3s,border-color .3s; }
+        .rolex-card:hover { transform: translateY(-5px); border-color: rgba(197,155,39,.7); }
+        .rolex-card[hidden] { display: none; }
+        .rolex-card img { display: block; width: 100%; height: 300px; object-fit: cover; filter: brightness(.82); transition: filter .3s; }
+        .rolex-card:hover img { filter: brightness(1); }
+        .watch-info { padding: 22px 22px 25px; }
+        .watch-brand { color: #c59b27; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; }
+        .rolex-card h3 { font-family: 'Cinzel',serif; letter-spacing: 2px; font-size: 16px; margin: 10px 0; }
+        .rolex-card p { color: #888; font-size: 11px; letter-spacing: 1px; line-height: 1.7; }
+        .watch-link { display: inline-block; margin-top: 18px; color: #dfba73; text-decoration: none; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; }
+        .watch-link:hover { color: #fff; }
+        @media (max-width: 900px) { .rolex-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+        @media (max-width: 600px) { .rolex-grid { grid-template-columns: 1fr; } .rolex-card img { height: 280px; } .rolex-collection { padding: 70px 7%; } .catalog-filter { padding: 11px 16px; } }
+
+        /* Separate page views and inquiry form */
+        .page-view { display: none; min-height: 75vh; padding-top: 110px; }
+        .page-view.active { display: block; }
+        .page-view.home-view { padding-top: 0; }
+        nav a.active::after { background: linear-gradient(90deg, transparent, #c59b27, transparent); }
+        .info-page { max-width: 1100px; margin: 0 auto; padding: 55px 8% 100px; }
+        .info-kicker { color: #dfba73; font-size: 10px; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 18px; }
+        .info-page h1 { font: 500 42px/1.2 'Cinzel',serif; letter-spacing: 4px; margin-bottom: 25px; }
+        .info-page h2 { font: 500 24px 'Cinzel',serif; letter-spacing: 2px; margin: 40px 0 16px; }
+        .info-page p, .info-page li { color: #aaa; font-size: 14px; line-height: 1.9; font-weight: 300; }
+        .info-page p + p { margin-top: 14px; }
+        .info-page ul { padding-left: 20px; }
+        .info-page li { padding: 5px 0; }
+        .info-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 22px; margin-top: 35px; }
+        .info-card { padding: 26px; border: 1px solid rgba(197,155,39,.25); background: #080809; }
+        .info-card h2 { margin: 0 0 12px; color: #dfba73; font-size: 19px; }
+        .info-card a { color: #dfba73; }
+        .contact-number { display: inline-block; margin: 12px 0 26px; color: #dfba73; font: 22px 'Cinzel',serif; letter-spacing: 2px; text-decoration: none; }
+        .inquiry-form { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; margin-top: 30px; }
+        .form-field { display: flex; flex-direction: column; gap: 9px; }
+        .form-field.full { grid-column: 1 / -1; }
+        .form-field label { color: #c6a65e; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; }
+        .form-field input, .form-field select { min-height: 48px; border: 1px solid rgba(197,155,39,.35); border-radius: 0; padding: 12px 14px; background: #080809; color: #fff; font: 13px 'Montserrat',sans-serif; }
+        .form-field input:focus, .form-field select:focus { outline: 1px solid #c59b27; }
+        .form-note, .form-status { color: #888; font-size: 11px; line-height: 1.7; }
+        .form-status { grid-column: 1 / -1; color: #dfba73; }
+        .page-nav-link { display: inline-flex; margin-top: 28px; }
+        @media(max-width:800px) { header { padding: 22px 6%; } nav { gap: 16px; } nav a { font-size: 9px; letter-spacing: 1px; } .header-actions { display: none; } }
+        @media(max-width:600px) { header { align-items: flex-start; gap: 15px; flex-wrap: wrap; } nav { width: 100%; justify-content: center; gap: 13px; order: 3; } .page-view:not(.home-view) { padding-top: 125px; } .info-grid, .inquiry-form { grid-template-columns: 1fr; } .form-field.full, .form-status { grid-column: auto; } .info-page h1 { font-size: 32px; } }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <header>
+        <a href="#home" class="logo" data-page="home" aria-label="Omega — главная">
+            <span class="logo-omega">Ω</span><span class="logo-text">OMEGA</span>
+        </a>
+        <nav aria-label="Основная навигация">
+            <a href="#catalog" data-page="catalog">Каталог</a>
+            <a href="#story" data-page="story">Наша история</a>
+            <a href="#innovation" data-page="innovation">Инновации</a>
+            <a href="#boutique" data-page="boutique">Бутик</a>
+        </nav>
+        <div class="header-actions"><div class="divider"></div><span class="feature-desc">OMEGA · ROLEX</span></div>
+    </header>
+
+    <main>
+        <div class="page-view home-view active" id="page-home">
+            <section class="hero">
+                <div class="hero-content">
+                    <div class="sub-tag">Swiss Made</div>
+                    <div class="brand-title-wrap"><div class="brand-symbol">Ω</div><h1 class="brand-name">OMEGA</h1><div class="brand-subtitle">A LEGEND SINCE 1848</div></div>
+                    <div class="gold-glow-line"></div>
+                    <p class="hero-description">Precision. Elegance. Timeless style.</p>
+                    <a href="#catalog" data-page="catalog" class="btn-gold-outline">Перейти в каталог <span>&gt;</span></a>
+                </div>
+                <a href="#catalog" data-page="catalog" class="scroll-down" aria-label="Открыть каталог"></a>
+            </section>
+            <section class="features-bar">
+                <div class="feature-item"><svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.2"><circle cx="12" cy="12" r="9"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="3"/></svg><div class="feature-title">ТОЧНОСТЬ</div><div class="feature-desc">Механика и мастерство</div></div>
+                <div class="feature-item"><svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.2"><path d="M6 3h12l4 6-10 12L2 9l4-6z"/><path d="M11 3v18M2 9h20"/></svg><div class="feature-title">КАЧЕСТВО</div><div class="feature-desc">Внимание к каждой детали</div></div>
+                <div class="feature-item"><svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.2"><path d="M18.178 8c5.096 0 5.096 8 0 8-5.095 0-7.133-8-12.356-8-5.096 0-5.096 8 0 8 5.223 0 7.261-8 12.356-8z"/></svg><div class="feature-title">НАСЛЕДИЕ</div><div class="feature-desc">Часы на поколения</div></div>
+            </section>
+            <section class="movement-section"><div class="movement-content"><div class="movement-accent-line"></div><h2 class="movement-title">ИСКУССТВО<br>ТОЧНОГО ВРЕМЕНИ</h2><p class="movement-text">Откройте коллекции Omega и Rolex и узнайте, что стоит за их характером, материалами и технологиями.</p><a href="#story" data-page="story" class="btn-gold-outline">История бренда <span>&gt;</span></a></div></section>
+        </div>
+
+        <section class="page-view" id="page-catalog">
+            <div class="rolex-collection" id="watch-catalog">
+                <div class="rolex-heading"><div class="movement-accent-line"></div><h1 class="movement-title">КАТАЛОГ ЧАСОВ</h1><p class="movement-text">Выберите модель и оставьте заявку, чтобы узнать актуальную цену и наличие.</p></div>
+                <div class="catalog-filters" role="group" aria-label="Фильтр по бренду"><button class="catalog-filter active" type="button" data-filter="all" aria-pressed="true">Все часы</button><button class="catalog-filter" type="button" data-filter="omega" aria-pressed="false">Omega</button><button class="catalog-filter" type="button" data-filter="rolex" aria-pressed="false">Rolex</button></div>
+                <div class="rolex-grid">
+                    <article class="rolex-card" data-brand="omega"><img src="https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&w=900&q=80" alt="Omega Speedmaster" loading="lazy"><div class="watch-info"><span class="watch-brand">OMEGA</span><h3>Speedmaster</h3><p>Легендарный хронограф и наследие космических исследований.</p><a class="watch-link" href="#boutique" data-page="boutique" data-model="Omega Speedmaster">Узнать цену &rarr;</a></div></article>
+                    <article class="rolex-card" data-brand="omega"><img src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&w=900&q=80" alt="Omega Seamaster" loading="lazy"><div class="watch-info"><span class="watch-brand">OMEGA</span><h3>Seamaster</h3><p>Коллекция с богатой историей морских исследований.</p><a class="watch-link" href="#boutique" data-page="boutique" data-model="Omega Seamaster">Узнать цену &rarr;</a></div></article>
+                    <article class="rolex-card" data-brand="omega"><img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=900&q=80" alt="Omega Constellation" loading="lazy"><div class="watch-info"><span class="watch-brand">OMEGA</span><h3>Constellation</h3><p>Выразительный дизайн и точность в классическом исполнении.</p><a class="watch-link" href="#boutique" data-page="boutique" data-model="Omega Constellation">Узнать цену &rarr;</a></div></article>
+                    <article class="rolex-card" data-brand="rolex"><img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=900&q=80" alt="Rolex Oyster Perpetual" loading="lazy"><div class="watch-info"><span class="watch-brand">ROLEX</span><h3>Oyster Perpetual</h3><p>Чистый образ Oyster и узнаваемый классический стиль.</p><a class="watch-link" href="#boutique" data-page="boutique" data-model="Rolex Oyster Perpetual">Узнать цену &rarr;</a></div></article>
+                    <article class="rolex-card" data-brand="rolex"><img src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=900&q=80" alt="Rolex Submariner" loading="lazy"><div class="watch-info"><span class="watch-brand">ROLEX</span><h3>Submariner</h3><p>Профессиональные часы для дайвинга с культовым силуэтом.</p><a class="watch-link" href="#boutique" data-page="boutique" data-model="Rolex Submariner">Узнать цену &rarr;</a></div></article>
+                    <article class="rolex-card" data-brand="rolex"><img src="https://images.unsplash.com/photo-1434056886845-dac89ffe9b56?auto=format&fit=crop&w=900&q=80" alt="Rolex Datejust" loading="lazy"><div class="watch-info"><span class="watch-brand">ROLEX</span><h3>Datejust</h3><p>Элегантная классика для повседневных и особых случаев.</p><a class="watch-link" href="#boutique" data-page="boutique" data-model="Rolex Datejust">Узнать цену &rarr;</a></div></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="page-view" id="page-story"><div class="info-page"><div class="info-kicker">Наша история · OMEGA</div><h1>НАСЛЕДИЕ ТОЧНОСТИ</h1><p>История OMEGA началась в 1848 году, когда Луи Брандт открыл часовую мастерскую в Швейцарии. Его целью было создавать точные и надёжные механизмы. В 1894 году появился калибр OMEGA — его успех дал имя всей компании.</p><p>С тех пор бренд развивает механическое часовое искусство и технологии измерения времени. С 1932 года OMEGA выступает официальным хронометристом Олимпийских игр. Сегодня в каталоге представлены как модели OMEGA, так и культовые часы Rolex.</p><div class="info-grid"><article class="info-card"><h2>Швейцарское часовое искусство</h2><p>Точность начинается с разработки механизма и продолжается контролем готовых часов. Каждая коллекция сохраняет собственный характер и предназначение.</p></article><article class="info-card"><h2>Подбор часов для вас</h2><p>Помогаем ознакомиться с моделями, уточнить наличие и получить актуальную цену. Оставьте контактную анкету в разделе «Бутик».</p><a href="#boutique" data-page="boutique">Связаться с бутиком →</a></article></div></div></section>
+
+        <section class="page-view" id="page-innovation"><div class="info-page"><div class="info-kicker">Материалы · механизмы · контроль</div><h1>ИННОВАЦИИ В ЧАСОВОМ ДЕЛЕ</h1><p>В часах разных марок применяются собственные материалы и конструкции. Ниже — несколько примеров технологий OMEGA и Rolex; состав и оснащение зависят от конкретной модели.</p><div class="info-grid"><article class="info-card"><h2>Oystersteel — сталь Rolex</h2><p>Для стальных корпусов и браслетов Rolex применяет Oystersteel — сплав семейства 904L, разработанный брендом. Он отличается высокой коррозионной стойкостью и хорошо сохраняет внешний вид после полировки.</p><a href="https://www.rolex.com/watchmaking/features/materials/oystersteel" target="_blank" rel="noopener">Материалы Rolex →</a></article><article class="info-card"><h2>Сплавы OMEGA</h2><p>В коллекциях используются разные материалы: нержавеющая сталь, керамика и фирменные золотые сплавы, включая Sedna™ Gold и Moonshine™ Gold. Материал выбирается для конкретной модели.</p><a href="https://press.omegawatches.com/" target="_blank" rel="noopener">Официальные материалы OMEGA →</a></article><article class="info-card"><h2>Механизмы и сборка</h2><p>Rolex разрабатывает и производит собственные механические калибры; при изготовлении компонентов сочетаются высокоточная обработка и ручные операции сборки и отделки. Каждый готовый механизм проходит проверки.</p><a href="https://newsroom.rolex.com/watchmaking/excellence-in-the-making" target="_blank" rel="noopener">Производство Rolex →</a></article><article class="info-card"><h2>Co‑Axial и Master Chronometer</h2><p>В механизмах OMEGA применяется коаксиальный спуск. Сертификация Master Chronometer предусматривает проверку готовых часов, включая точность, запас хода, водонепроницаемость и устойчивость к магнитным полям.</p><a href="https://press.omegawatches.com/omega-celebrates-10-years-of-master-chronometer-certification/" target="_blank" rel="noopener">Технологии и сертификация OMEGA →</a></article></div><p style="margin-top:28px">Цена зависит от модели и комплектации. Актуальную стоимость сообщаем лично после обращения в бутик.</p><a href="#boutique" data-page="boutique" class="btn-gold-outline page-nav-link">Узнать цену <span>&gt;</span></a></div></section>
+
+        <section class="page-view" id="page-boutique"><div class="info-page"><div class="info-kicker">Персональная консультация</div><h1>БУТИК И ЗАПРОС ЦЕНЫ</h1><p>Заполните анкету, чтобы запросить цену, наличие или консультацию по выбранным часам. Укажите предпочтительный способ оплаты — реквизиты карты вводить не нужно.</p><h2>Связаться с бутиком</h2><a class="contact-number" href="tel:+380000000000">+38 (___) ___-__-__</a><p class="form-note">Замените шаблон номером магазина перед публикацией сайта.</p><form class="inquiry-form" id="inquiry-form"><div class="form-field"><label for="first-name">Имя</label><input id="first-name" name="firstName" autocomplete="given-name" required></div><div class="form-field"><label for="last-name">Фамилия</label><input id="last-name" name="lastName" autocomplete="family-name" required></div><div class="form-field"><label for="phone">Номер для связи</label><input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+380..." required></div><div class="form-field"><label for="watch-model">Интересующая модель</label><select id="watch-model" name="model" required><option value="">Выберите модель</option><option>Omega Speedmaster</option><option>Omega Seamaster</option><option>Omega Constellation</option><option>Rolex Oyster Perpetual</option><option>Rolex Submariner</option><option>Rolex Datejust</option><option>Другая модель</option></select></div><div class="form-field full"><label for="payment">Предпочтительный способ оплаты</label><select id="payment" name="payment" required><option value="">Выберите способ</option><option>Банковская карта в бутике</option><option>Apple Pay</option><option>Google Pay</option><option>Другой способ — уточнить при консультации</option></select></div><div class="form-field full"><button class="btn-gold-outline" type="submit">Подготовить запрос <span>&gt;</span></button></div><p class="form-note full">Анкета пока работает в браузере и не отправляет данные на сервер. Для приёма заявок подключите реальный телефон WhatsApp или сервер обработки.</p><p class="form-status" id="form-status" role="status" aria-live="polite"></p></form></div></section>
+    </main>
+    <footer><a href="#home" class="logo" data-page="home"><span class="logo-omega">Ω</span><span class="logo-text">OMEGA · ROLEX</span></a></footer>
+    <script>
+        function showPage(page, updateUrl) {
+            var allowed = ['home', 'catalog', 'story', 'innovation', 'boutique'];
+            if (!allowed.includes(page)) page = 'home';
+            document.querySelectorAll('.page-view').forEach(function (view) { view.classList.toggle('active', view.id === 'page-' + page); });
+            document.querySelectorAll('header nav a[data-page]').forEach(function (link) { link.classList.toggle('active', link.dataset.page === page); });
+            document.title = ({home:'OMEGA · Часовой бутик',catalog:'Каталог часов · OMEGA и Rolex',story:'Наша история · Часовой бутик',innovation:'Инновации · Часовое дело',boutique:'Бутик · Запрос цены'})[page];
+            if (updateUrl) history.pushState({page:page}, '', '#' + page);
+            window.scrollTo(0,0);
+        }
+        document.querySelectorAll('[data-page]').forEach(function (link) {
+            link.addEventListener('click', function (event) {
+                event.preventDefault();
+                var model = link.dataset.model;
+                showPage(link.dataset.page, true);
+                if (model) document.getElementById('watch-model').value = model;
+            });
+        });
+        document.querySelectorAll('.catalog-filter').forEach(function (button) {
+            button.addEventListener('click', function () {
+                document.querySelectorAll('.catalog-filter').forEach(function (item) { var selected = item === button; item.classList.toggle('active', selected); item.setAttribute('aria-pressed', selected ? 'true' : 'false'); });
+                document.querySelectorAll('.rolex-card').forEach(function (card) { card.hidden = button.dataset.filter !== 'all' && card.dataset.brand !== button.dataset.filter; });
+            });
+        });
+        window.addEventListener('popstate', function () { showPage(location.hash.slice(1) || 'home', false); });
+        showPage(location.hash.slice(1) || 'home', false);
+        document.getElementById('inquiry-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            var form = event.currentTarget;
+            if (!form.reportValidity()) return;
+            document.getElementById('form-status').textContent = 'Анкета заполнена. Подключите номер бутика или сервер обработки, чтобы отправлять заявки клиентам.';
+        });
+    </script></body>
+</html>
+
+
+
+
